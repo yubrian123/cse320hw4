@@ -21,6 +21,7 @@ cse320_init() is a function that initalizes both address[] and files[]. It inita
 Besides the that one fucntion i created, the rest of the functions what were needed in the spec sheet.
 
 THIS IS WITH THE EXTRA CREDIT 2.1
+
 void* cse320_malloc(int size)
 for cse320_malloc, this function takes in a size as a parameter and calls malloc internally. It also checks if the the number of addresses is 25 or more. I do this check by the global variable numOfAddr. Everytime i malloc and add to the address[], i increment numOfAddr. In this function, i check for the first available spot in address[i].ref_count is zero. This means this address has not been used and i malloc, change the ref_count to 1, change the addr to the return address of malloc(size) and increment numOfAddr. The function will return an error if you request a new address but numOfAddr is already caped at 25. If the function will return a void* of malloc(size).
 
@@ -28,6 +29,7 @@ void cse320_free(void* pointer)
 This function takes in an address and checks if its inside the address[]. If the address does not exist, it will return an error. If it found the address, but the ref_count is 0, it will also return an error. Otherwise, it sets the ref_count at the position of the address in the array to 0 and free that pointer passed in. 
 
 THIS IS WITH THE EXTRA CREDIT 2.2
+
 FILE* cse320_fopen(char* file, char* command)
 This function returns a FILE* if sucessful. It will turn an error if we are trying to open more then 25 files. It does a similar pocess to the malloc function such that if it finds a spot in the array files[] where ref_count is zero, it will open the file and increment the ref_count and set the address/filename to the apporiate fields. This also checks in the array if you're trying to open a file that has already been open. if it does, it just increments the ref_count at that space by 1. It then returns the FILE* of file you're trying to open
 
